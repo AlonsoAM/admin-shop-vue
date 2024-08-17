@@ -1,8 +1,8 @@
 <script setup lang="ts">
 
-import {tesloApi} from "@/api/tesloApi";
+import {getProductsAction} from "@/modules/products/actions";
 
-tesloApi
+getProductsAction()
 
 </script>
 
