@@ -16,15 +16,16 @@ const props = defineProps<Props>()
       <div class="relative flex items-end overflow-hidden rounded-xl">
         <img
             :src="props.product.images[0]"
-            :alt="props.product.title"/>
+            :alt="props.product.title"
+            class="h-[250px] object-cover"/>
       </div>
 
       <div class="mt-1 p-2">
-        <h2 class="text-slate-700">{{props.product.title}}</h2>
-        <p class="mt-1 text-sm text-slate-400 capitalize">{{props.product.gender}}</p>
+        <h2 class="text-slate-700">{{ props.product.title }}</h2>
+        <p class="mt-1 text-sm text-slate-400 capitalize">{{ props.product.gender }}</p>
 
         <div class="mt-3 flex items-end justify-between">
-          <p class="text-lg font-bold text-blue-500">${{props.product.price}}</p>
+          <p class="text-lg font-bold text-blue-500">${{ props.product.price }}</p>
 
           <div
               class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
