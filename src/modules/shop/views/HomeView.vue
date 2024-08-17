@@ -4,11 +4,23 @@ import {getProductsAction} from "@/modules/products/actions";
 import {useQuery} from "@tanstack/vue-query";
 import ProductList from "@/modules/products/components/ProductList.vue";
 import ButtonPagination from "@/modules/common/components/ButtonPagination.vue";
+import {useRoute} from "vue-router";
+import {ref, watch} from "vue";
 
-const {data: products, isLoading} = useQuery({
-  queryKey: ['products', {page: 1}],
-  queryFn: () => getProductsAction()
+const route = useRoute()
+const page = ref(route.query.page ? parseInt(route.query.page as string) : 1)
+
+const {data: products} = useQuery({
+  queryKey: ['products', {page: page}],
+  queryFn: () => getProductsAction(page.value)
 })
+
+watch(
+    () => route.query.page,
+    (newPage) => {
+      page.value = newPage ? parseInt(newPage as string) : 1
+    }
+)
 
 
 </script>
@@ -61,11 +73,11 @@ const {data: products, isLoading} = useQuery({
     <h1 class="text-xl">Cargando productos</h1>
     <p>Espere por favor!</p>
   </div>
-  <product-list v-else :products="products" ></product-list>
+  <product-list v-else :products="products"></product-list>
 
-<!--  Pagination Buttons-->
-  <button-pagination></button-pagination>
-
+  <!--  Pagination Buttons-->
+  <button-pagination :has-more-data="!!products && products.length < 10"
+                     :page="page"></button-pagination>
 </template>
 
 <style scoped>
