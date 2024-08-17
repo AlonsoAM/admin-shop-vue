@@ -1,10 +1,10 @@
+<script setup lang="ts">
+import {VueQueryDevtools} from '@tanstack/vue-query-devtools'
+</script>
+
+
 <template>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-  <RouterView/>
+  <router-view></router-view>
+  <VueQueryDevtools/>
 </template>
 
-<script setup lang="ts">
-
-</script>
