@@ -3,6 +3,7 @@
 import {getProductsAction} from "@/modules/products/actions";
 import {useQuery} from "@tanstack/vue-query";
 import ProductList from "@/modules/products/components/ProductList.vue";
+import ButtonPagination from "@/modules/common/components/ButtonPagination.vue";
 
 const {data: products, isLoading} = useQuery({
   queryKey: ['products', {page: 1}],
@@ -61,6 +62,9 @@ const {data: products, isLoading} = useQuery({
     <p>Espere por favor!</p>
   </div>
   <product-list v-else :products="products" ></product-list>
+
+<!--  Pagination Buttons-->
+  <button-pagination></button-pagination>
 
 </template>
 
